@@ -1,0 +1,5 @@
+{
+  "dropdown": "./components/dropdown/index.js",
+  "loading": "./components/loading/index.js",
+  "uploader": "./components/uploader/index.js"
+}
