@@ -2,11 +2,13 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: './src/main.js',
+  entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'build.js'
+    filename: 'build.js',
+    library: 'Conlugin',
+    libraryTarget: 'umd'
   },
   module: {
     rules: [
@@ -40,7 +42,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
+      module: path.resolve(__dirname, './components/index.js')
     }
   },
   devServer: {
@@ -51,7 +53,15 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map'
+  devtool: '#eval-source-map',
+  externals: {
+    vue: {
+      commonjs: 'vue',
+      commonjs2: 'vue',
+      amd: 'vue',
+      root: 'Vue'
+    }
+  }
 }
 
 if (process.env.NODE_ENV === 'production') {

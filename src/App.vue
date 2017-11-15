@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Loading></Loading>
+      {{ msg }}
   </div>
 </template>
 

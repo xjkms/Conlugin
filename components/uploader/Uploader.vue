@@ -1,5 +1,5 @@
 <template>
-  dropdown
+  <div>dropdown</div>
 </template>
 <script>
   export default {

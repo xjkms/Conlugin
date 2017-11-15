@@ -5,9 +5,11 @@
   "author": "xjkms <xjkmsg@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
-    "build:file": "node build/bin/build-entry.js"
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --color --watch",
+    "build:file": "node build/bin/build-entry.js",
+    "build": "npm run build:file & webpack --progress --colors --profile --bail"
   },
+  "main": "lib/conlugin.js",
   "dependencies": {
     "vue": "^2.4.4"
   },
