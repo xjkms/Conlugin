@@ -1,8 +1,10 @@
 var path = require('path')
 var webpack = require('webpack')
 
+var Components = require('./components.json')
+
 module.exports = {
-  entry: './src/index.js',
+  entry: Components,
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',

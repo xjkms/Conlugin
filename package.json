@@ -5,12 +5,12 @@
   "author": "xjkms <xjkmsg@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --color --watch",
     "build:file": "node build/bin/build-entry.js",
-    "build": "npm run build:file & webpack --progress --colors --profile --bail"
+    "build": "npm run build:file & webpack --progress --colors --profile --bail",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.demo.config.js --color --watch",
   },
   "main": "lib/conlugin.js",
-  "dependencies": {
+  "peerDependencies": {
     "vue": "^2.4.4"
   },
   "devDependencies": {
@@ -20,13 +20,14 @@
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
     "file-loader": "^1.1.4",
+    "html-webpack-plugin": "^2.30.1",
+    "json-templater": "^1.0.4",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6",
+    "uppercamelcase": "^1.1.0",
     "vue-loader": "^13.0.5",
     "vue-template-compiler": "^2.4.4",
     "webpack": "^3.6.0",
-    "webpack-dev-server": "^2.9.1",
-    "uppercamelcase": "^1.1.0",
-    "json-templater": "^1.0.4"
+    "webpack-dev-server": "^2.9.1"
   }
 }
