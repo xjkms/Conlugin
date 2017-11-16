@@ -1,0 +1,11 @@
+.cn-dropdown {
+  width: 200px;
+  height: 40px;
+  background-color: white;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  text-indent: 0.4em;
+  >.content {
+    line-height: 40px;
+  }
+}

@@ -1,6 +1,6 @@
 <template>
-  <div>
-      <span>dropdown</span>
+  <div class="cn-dropdown">
+    <span class="content">请选择</span>
   </div>
 </template>
 <script>
@@ -24,5 +24,5 @@
     }
   }
 </script>
-<style lang="sass" scoped>
+<style lang="scss">@import './dropdown.scss';
 </style>
