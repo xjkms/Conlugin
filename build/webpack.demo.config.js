@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   entry: './examples/main.js',
   output: {
-    path: path.resolve(__dirname, '../examples/dist/'),
+    path: path.resolve(__dirname, 'examples/'),
     filename: 'demo.js'
   },
   module: {
@@ -31,15 +31,22 @@ module.exports = {
         options: {
           name: '[name].[ext]?[hash]'
         }
+      },
+      {
+        test: /\.html$/,
+        loader: 'html-loader'
       }
     ]
   },
   devServer: {
-    historyApiFallback: true
+    historyApiFallback: true,
+    index: 'examples/index.html'
   },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Output Management',
+      template: 'examples/index.html',
+      filename: 'examples/index.html'
     })
   ]
 }

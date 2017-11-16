@@ -7,7 +7,7 @@
   "scripts": {
     "build:file": "node build/bin/build-entry.js",
     "build": "npm run build:file & webpack --progress --colors --profile --bail",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.demo.config.js --color --watch",
+    "dev": "npm run build & cross-env NODE_ENV=development webpack-dev-server --config build/webpack.demo.config.js --color --watch --hot"
   },
   "main": "lib/conlugin.js",
   "peerDependencies": {
@@ -20,11 +20,13 @@
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
     "file-loader": "^1.1.4",
+    "html-loader": "^0.5.1",
     "html-webpack-plugin": "^2.30.1",
     "json-templater": "^1.0.4",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6",
     "uppercamelcase": "^1.1.0",
+    "vue": "^2.5.3",
     "vue-loader": "^13.0.5",
     "vue-template-compiler": "^2.4.4",
     "webpack": "^3.6.0",

@@ -10,6 +10,7 @@ Loading,
 Uploader
 ];
 
+const version = '1.0.0'
 const install = function(Vue, opts = {}) {
   /* istanbul ignore if */
   if (install.installed) return;
@@ -34,8 +35,8 @@ if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);
 };
 
-export default {
-  version: '1.0.0',
+export {
+  version,
   install,
   Dropdown,
   Loading,

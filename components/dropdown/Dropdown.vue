@@ -1,10 +1,11 @@
 <template>
   <div>
-      dropdown
+      <span>dropdown</span>
   </div>
 </template>
 <script>
   export default {
+    name: 'cn-dropdown',
     components: {
     },
     data() {

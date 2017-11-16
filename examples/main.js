@@ -1,5 +1,8 @@
 import Vue from 'vue'
-import App from '../src/App.vue'
+import App from './App.vue'
+import {install as Conlugin} from '../src/index'
+
+Vue.use(Conlugin);
 
 new Vue({
   el: '#app',

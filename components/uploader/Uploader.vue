@@ -1,8 +1,11 @@
 <template>
-  <div>dropdown</div>
+  <div>
+      <span>uploader</span>
+  </div>
 </template>
 <script>
   export default {
+    name: 'cn-uploader',
     components: {
     },
     data() {
