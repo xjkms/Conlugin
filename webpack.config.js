@@ -44,7 +44,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      module: path.resolve(__dirname, './components/index.js')
+      module: path.resolve(__dirname, 'components/index.js')
     }
   },
   devServer: {
