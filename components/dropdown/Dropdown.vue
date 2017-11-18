@@ -65,7 +65,28 @@
         this.value = item.value;
       },
       changeMenuState(item) {
+        console.log('state change triggered!');
         console.log(item);
+
+        const target = this.findInArrayByName(this.menuItems, 'id', item.id, 'subMenuItems');
+        target.show = !item.show;
+      },
+      findInArrayByName(targetArray, attrName, attrValue, subArray) {
+        const that = this;
+        let result = null;
+        for(let index in targetArray) {
+          const item = targetArray[index]
+          if(item[attrName] === attrValue) {
+            result = item;
+            break;
+          } else {
+            if(item[subArray]) {
+              result = that.findInArrayByName(item[subArray], attrName, attrValue, subArray)
+              if(result) break;
+            }
+          }
+        }
+        return result;
       }
     },
     computed: {

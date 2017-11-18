@@ -8,16 +8,23 @@
     },
     render: function(createElement) {
       const that = this;
+      const triggerType = that.getTriggerType;
       const createSubMenu = function(parentItem) {
-        console.log(parentItem);
         const items = parentItem.subMenuItems;
-        return createElement('div', {'class': 'dropdown-list-sub-menu', 'style': {'display': parentItem.show?'': 'none'}}, items.map(function(item) {
+        return createElement('div', {'class': {
+          'dropdown-list-sub-menu': true,
+        }, 'style': {'display': parentItem.show?'': 'none'}}, items.map(function(item) {
           if(item.subMenuItems && item.subMenuItems.length > 0) {
             return createElement('div', {
               'class': {
-                'dropdown-list-item': true
-              }, nativeOn: {
-                click: that.emitMenuState(parentItem)
+                'dropdown-list-item': true,
+                'opened': item.show
+              },
+              'on': {
+                '!click': function(e) {
+                  e.stopPropagation();
+                  that.emitMenuState(item)
+                }
               }
             },[
               createElement('div', [
@@ -42,10 +49,14 @@
           if(item.subMenuItems.length > 0) {
             return createElement('div',
               {'class':
-                {'dropdown-list-item': true},
+                {'dropdown-list-item': true,
+                  'opened': item.show
+                },
                 on: {
-                  click: that.emitMenuState(item)
-                }
+                  'click': function(e) {
+                    that.emitMenuState(item)
+                  }
+                },
               },[
               createElement('div', [
                 createElement('span', item.value),
@@ -66,6 +77,10 @@
         type: Array,
         require: true,
         default: []
+      },
+      triggerType: {
+        type: String,
+        default: 'hover'
       }
     },
     data() {
@@ -78,12 +93,13 @@
         this.value = item.value;
       },
       emitMenuState(item) {
-        console.log('son')
         this.$emit('updateMenuState', item);
       }
     },
     computed: {
-
+      getTriggerType() {
+        return this.triggerType === 'hover'? 'mouseover': 'click'
+      }
     },
     beforeMount() {
     }
