@@ -97,5 +97,7 @@
     }
   }
 </script>
-<style lang="scss">@import './dropdown.scss';
+<style lang="scss">
+    @import "";
+    @import './dropdown.scss';
 </style>
