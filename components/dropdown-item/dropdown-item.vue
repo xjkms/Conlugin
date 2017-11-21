@@ -1,3 +1,9 @@
+<template>
+    <div class="dropdown-list-item" @click.stop="emitValue(item)">
+        <span>{{ item.value }}</span>
+        <cn-dropdown v-if="item.subMenuItems && item.subMenuItems.length" @setValue="setValue" :menuItems="item.subMenuItems" :isTopLevel="false"></cn-dropdown>
+    </div>
+</template>
 <script>
   /**
    * todo:1.子菜单的打开和关闭；2.联动？3.动态加载？
@@ -73,8 +79,8 @@
       )
     },
     props: {
-      menuItems: {
-        type: Array,
+      item: {
+        type: Object,
         require: true,
         default: []
       },
@@ -94,6 +100,16 @@
       },
       emitMenuState(item) {
         this.$emit('updateMenuState', item);
+      },
+      emitValue(item) {
+        if(item.subMenuItems && item.subMenuItems.length) {
+          this.emitMenuState(item);
+        } else {
+          this.$emit('setValue', item)
+        }
+      },
+      setValue(value) {
+        this.emitValue(value)
       }
     },
     computed: {

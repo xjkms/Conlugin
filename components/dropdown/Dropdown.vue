@@ -1,7 +1,11 @@
 <template>
   <div class="cn-dropdown">
-      <span class="content">{{ value }}</span>
-      <cn-dropdown-item :menuItems="menuItems" @updateMenuState="changeMenuState"></cn-dropdown-item>
+      <span v-if="isTopLevel" class="content" @click="changeMenuShow">{{ value }}</span>
+      <div class="cn-dropdown-menu" :v-show="isShow" :class="{'cn-dropdown-menu-sub': !isTopLevel}">
+          <cn-dropdown-item v-for="item in menuItems" :key="item.id" :item="item" @updateMenuState="changeMenuState" @setValue="setValue">
+
+          </cn-dropdown-item>
+      </div>
   </div>
 </template>
 <script>
@@ -10,57 +14,34 @@
     components: {
     },
     render: function(createElement) {
+      const that = this;
       return createElement(
-        'h1',
-        this.value
       )
     },
     data() {
       return {
         value: '请选择',
-        menuItems: [
-          {
-            value: 'option1',
-            id: '1',
-            show: true,
-            subMenuItems: [{
-              value: 'subOption11',
-              id: '11',
-            },{
-              value: 'subOption12',
-              id: '12'
-            },{
-              value: 'subOption13',
-              id: '13',
-              show: false,
-              subMenuItems: [{
-                value: 'subOption131',
-                id: '131'
-              },{
-                value: 'subOption132',
-                id: '132'
-              }]
-            }]
-          },
-          {
-            value: 'option2',
-            id: '2',
-            subMenuItems: []
-          },
-          {
-            value: 'option3',
-            id: '3',
-            subMenuItems: []
-          },
-          {
-            value: 'option4',
-            id: '4',
-            subMenuItems: []
-          }
-        ]
+        isShow: false
+      }
+    },
+    props: {
+      menuItems: {
+        type: Array,
+        default: []
+      },
+      isTopLevel: {
+        type: Boolean,
+        default: true
+      },
+      show: {
+        type: Boolean,
+        default: false
       }
     },
     methods: {
+      changeMenuShow() {
+        this.isShow = !this.isShow
+      },
       itemClicked (item) {
         this.value = item.value;
       },
@@ -87,6 +68,9 @@
           }
         }
         return result;
+      },
+      setValue(item) {
+        this.isTopLevel? this.value = item.value: this.$emit('setValue', item)
       }
     },
     computed: {
@@ -98,6 +82,5 @@
   }
 </script>
 <style lang="scss">
-    @import "";
     @import './dropdown.scss';
 </style>
